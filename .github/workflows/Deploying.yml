@@ -16,8 +16,6 @@ jobs:
           version: 1.11.3
       - name: Install pods
         run: pod install
-      - name: Build project
-        run: xcodebuild -scheme OTFMagicBox build
       - name: Setup provisioning profile
         env:
           SIGINING_CERTIFICATES_DATA: ${{ secrets.SIGINING_CERTIFICATES_DATA }}
@@ -28,6 +26,8 @@ jobs:
           PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
         run: |
           exec .github/secrets/import_profile.sh
+      - name: Build project
+        run: xcodebuild -scheme OTFMagicBox build
       - name: Archiving project
         env:
           PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
