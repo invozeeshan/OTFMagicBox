@@ -11,7 +11,7 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>org.theraforge.magicbox.ios</key>
-		<string>theraforge_release</string>
+		<string>OTFMagicBox_release</string>
 	</dict>
 </dict>
 </plist>
