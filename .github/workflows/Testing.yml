@@ -2,21 +2,34 @@ name: Testing
 on:
   push:
     branches:
-    - main
+    - development
 jobs:
   test:
     name: Testing Swift Package and iOS app
-    runs-on: macOS-latest
+    runs-on: macOS-12.4
     steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '13.4.1'
       - name: Checkout repository
         uses: actions/checkout@v1
-      - name: Force XCode 13.3.1
-        run: sudo xcode-select -switch /Applications/Xcode.app
       - name: setup-cocoapods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
           version: 1.11.3
       - name: Install pods
         run: pod install
+      - name: Setup provisioning profile
+        env:
+          SIGINING_CERTIFICATES_DATA_DEBUG: ${{ secrets.SIGINING_CERTIFICATES_DATA_DEBUG }}
+          SIGINING_CERTIFICATES_DATA_RELEASE: ${{ secrets.SIGINING_CERTIFICATES_DATA_RELEASE }}
+          SIGINING_CERTIFICATES_PASSWORD: ${{ secrets.SIGINING_CERTIFICATES_PASSWORD }}
+        run: .github/secrets/decrypt_secrets.sh
+      - name: Import provisioning profile
+        env:
+          PROVISIONING_PROFILE_DATA_DEBUG: ${{ secrets.PROVISIONING_PROFILE_DATA_DEBUG }}
+          PROVISIONING_PROFILE_DATA_RELEASE: ${{ secrets.PROVISIONING_PROFILE_DATA_RELEASE }}
+        run: |
+          exec .github/secrets/import_profile.sh
       - name: Testing iOS app
         run: exec ./.github/scripts/test_app.sh
