@@ -26,8 +26,8 @@ jobs:
           PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
         run: |
           exec .github/secrets/import_profile.sh
-      - name: Build project
-        run: xcodebuild -scheme OTFMagicBox build
+#      - name: Build project
+#        run: xcodebuild -scheme OTFMagicBox build
       - name: Archiving project
         env:
           PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
