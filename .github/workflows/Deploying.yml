@@ -16,14 +16,16 @@ jobs:
           version: 1.11.3
       - name: Install pods
         run: pod install
-      - name: Setup provisioning profile
+      - name: Setup keychain
         env:
-          SIGINING_CERTIFICATES_DATA: ${{ secrets.SIGINING_CERTIFICATES_DATA }}
-          SIGINING_CERTIFICATES_PASSWORD: ${{ secrets.SIGINING_CERTIFICATES_PASSWORD }}
+          SIGNING_CERTIFICATE_DATA_DEBUG: ${{ secrets.SIGNING_CERTIFICATE_DATA_DEBUG }}
+          SIGNING_CERTIFICATE_DATA_RELEASE: ${{ secrets.SIGNING_CERTIFICATE_DATA_RELEASE }}
+          SIGNING_CERTIFICATES_PASSWORD: ${{ secrets.SIGNING_CERTIFICATES_PASSWORD }}
         run: .github/secrets/decrypt_secrets.sh
       - name: Import provisioning profile
         env:
-          PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
+          PROVISIONING_PROFILE_DATA_DEBUG: ${{ secrets.PROVISIONING_PROFILE_DATA_DEBUG }}
+          PROVISIONING_PROFILE_DATA_RELEASE: ${{ secrets.PROVISIONING_PROFILE_DATA_RELEASE }}
         run: |
           exec .github/secrets/import_profile.sh
 #      - name: Build project
