@@ -31,5 +31,5 @@ jobs:
           PROVISIONING_PROFILE_DATA_RELEASE: ${{ secrets.PROVISIONING_PROFILE_DATA_RELEASE }}
         run: |
           exec .github/secrets/import_profile.sh
-#      - name: Testing iOS app
-#        run: exec ./.github/scripts/test_app.sh
+      - name: Testing iOS app
+        run: exec ./.github/scripts/test_app.sh
