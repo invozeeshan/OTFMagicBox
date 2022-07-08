@@ -33,7 +33,7 @@ OF SUCH DAMAGE.
  */
 
 import UIKit
-import OTFTemplateBox
+//import OTFTemplateBox
 import OTFResearchKit
 
 @main
@@ -45,24 +45,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         do {
-            try OTFConfigManager.shared.loadDataFromFile(nil)
+//            try OTFConfigManager.shared.loadDataFromFile(nil)
         } catch {
             print(error)
         }
         let tintColor = YmlReader().tintColor
 
-        let defaultProtection = OTFConfigManager.shared.defaultOTFProtectionLevel()
+//        let defaultProtection = OTFConfigManager.shared.defaultOTFProtectionLevel()
 
-        switch defaultProtection {
-        case .runToCompletionWithIn10Seconds:
-            print("Default protection is set runToCompletionWithIn10Seconds")
-        case .runToCompletionBeyond10Seconds:
-            print("Default protection is set runToCompletionBeyond10Seconds")
-        case .backgroundMode:
-            print("Default protection is set background Mode")
-        case .none:
-            print("Default protection is not set")
-        }
+//        switch defaultProtection {
+//        case .runToCompletionWithIn10Seconds:
+//            print("Default protection is set runToCompletionWithIn10Seconds")
+//        case .runToCompletionBeyond10Seconds:
+//            print("Default protection is set runToCompletionBeyond10Seconds")
+//        case .backgroundMode:
+//            print("Default protection is set background Mode")
+//        case .none:
+//            print("Default protection is not set")
+//        }
         
         OCKStoreManager.shared.coreDataStore.populateSampleData()
         
