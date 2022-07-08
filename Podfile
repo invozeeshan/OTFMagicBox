@@ -12,7 +12,7 @@ target 'OTFMagicBox' do
   pod 'OTFCDTDatastore', '2.1.1-beta.1'
   pod 'OTFCareKit/CareHealth', '2.0.2-beta.1'
   pod 'OTFResearchKit', '2.0.0-beta.1'
-  pod 'OTFTemplateBox', '1.0.1-beta'
+#  pod 'OTFTemplateBox', '1.0.1-beta'
   pod 'OTFCloudClientAPI', '1.0.1-beta'
   pod 'GoogleSignIn'
 
